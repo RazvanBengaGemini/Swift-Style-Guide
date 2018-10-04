@@ -62,9 +62,9 @@ extension MyViewController: UIScrollViewDelegate {
 ```
 **Not Preferred:**
 ```markdown
-`class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
   // all methods
-}`
+}
 ```
 
 ### Classes/Structs properties and methods organization
