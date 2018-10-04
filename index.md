@@ -47,23 +47,23 @@ When conforming to a protocol please add a separate extension for the protocol m
 **Preferred:**
 ```
 class MyViewController: UIViewController {
-  // class stuff here
+    // class stuff here
 }
 
 // MARK: - UITableViewDataSource
 extension MyViewController: UITableViewDataSource {
-  // table view data source methods
+    // table view data source methods
 }
 
 // MARK: - UIScrollViewDelegate
 extension MyViewController: UIScrollViewDelegate {
-  // scroll view delegate methods
+    // scroll view delegate methods
 }
 ```
 **Not Preferred:**
 ```
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
-  // all methods
+    // all methods
 }
 ```
 
@@ -137,6 +137,29 @@ class MyViewController: UIViewController {
     private somePrivateFunc() {
     }
     
+}
+```
+
+### Unused Code
+
+Unused (dead) code, including Xcode template code and placeholder comments should be removed.
+
+**Preferred:**
+```
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return Database.contacts.count
+}
+```
+**Not Preferred:**
+```
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return Database.contacts.count
 }
 ```
 
