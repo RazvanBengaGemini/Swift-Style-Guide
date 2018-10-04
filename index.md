@@ -71,13 +71,13 @@ class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDel
 
 We should organize our classes/structs body in the following order:
 
-1. IBOutlets (only in the case of ViewControllers)
-2. Public/Internal properties (please use public only when neccessary otherwise use the internal - default access modifier)
-3. FilePrivate and Private properties
-4. LifeCycle methods (only in the case of ViewControllers)
-5. IBActions (only in the case of ViewControllers)
-6. Public/Internal Functions (please use public only when neccessary otherwise use the internal - default access modifier)
-7. Private Functions
+1. **IBOutlets** (only in the case of ViewControllers)
+2. **Public/Internal properties** (please use public only when neccessary otherwise use the internal - default access modifier)
+3. **FilePrivate and Private properties**
+4. **LifeCycle methods** (only in the case of ViewControllers)
+5. **IBActions** (only in the case of ViewControllers)
+6. **Public/Internal Functions** (please use public only when neccessary otherwise use the internal - default access modifier)
+7. **Private Functions**
 
 ### Markdown
 
