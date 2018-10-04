@@ -13,6 +13,7 @@ view.backgroundColor = .red
 let toView = context.view(forKey: .to)
 let view = UIView(frame: .zero)
 ```
+
 **Not Preferred:**
 ```
 let selector = #selector(ViewController.viewDidLoad)
@@ -30,6 +31,7 @@ Use one or max two uppercase letters such as T, U, or VM.
 struct Stack<V> { ... }
 associatedType VM
 ```
+
 **Not Preferred:**
 ```
 struct Stack<View> { ... }
@@ -60,6 +62,7 @@ extension MyViewController: UIScrollViewDelegate {
     // scroll view delegate methods
 }
 ```
+
 **Not Preferred:**
 ```
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
@@ -140,6 +143,42 @@ class MyViewController: UIViewController {
 }
 ```
 
+### Use of Self
+
+For conciseness, avoid using self since Swift does not require it to access an object's properties or invoke its methods.
+
+Use self only when required by the compiler (in @escaping closures, or in initializers to disambiguate properties from arguments). In other words, if it compiles without self then omit it.
+
+### Closure Expressions
+
+Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
+
+**Preferred:**
+```
+UIView.animate(withDuration: 1.0) {
+   self.myView.alpha = 0
+}
+
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+}, completion: { finished in
+   self.myView.removeFromSuperview()
+})
+```
+
+**Not Preferred:**
+```
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+})
+
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+}) { f in
+   self.myView.removeFromSuperview()
+}
+```
+
 ### Unused Code
 
 Unused (dead) code, including Xcode template code and placeholder comments should be removed.
@@ -150,6 +189,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     return Database.contacts.count
 }
 ```
+
 **Not Preferred:**
 ```
 override func didReceiveMemoryWarning() {
