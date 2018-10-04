@@ -79,6 +79,67 @@ We should organize our classes/structs body in the following order:
 6. **Public/Internal Functions** (please use public only when neccessary otherwise use the internal - default access modifier)
 7. **Private Functions**
 
+**Preferred:**
+```
+class MyViewController: UIViewController {
+
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
+    
+    var property1: String?
+    private let property2: String
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @IBAction func someAction(_ sender: Any) {
+    }
+    
+    func someFunc() {
+    }
+    
+    private somePrivateFunc() {
+    }
+    
+}
+```
+
+**Not Preferred:**
+```
+class MyViewController: UIViewController {
+
+    var property1: String?
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
+    
+    private let property2: String
+    
+    func someFunc() {
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func someAction(_ sender: Any) {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    private somePrivateFunc() {
+    }
+    
+}
+```
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
