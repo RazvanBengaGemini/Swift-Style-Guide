@@ -23,7 +23,7 @@ let view = UIView(frame: CGRect.zero)
 
 ### Generic type paramateres and associated types
 
-Use one or two uppercase letters such as T, U, or VM.
+Use one or max two uppercase letters such as T, U, or VM.
 
 **Preferred:**
 ```
@@ -35,6 +35,41 @@ associatedType VM
 struct Stack<View> { ... }
 associatedType ViewModel
 ```
+
+## Code organization
+
+Use extensions to organize your code into logical blocks of functionality. Each extension should be set off with a // MARK: - comment to keep things well-organized.
+
+### Protocol Conformance
+
+When conforming to a protocol please add a separate extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
+
+**Preferred:**
+```
+class MyViewController: UIViewController {
+  // class stuff here
+}
+
+// MARK: - UITableViewDataSource
+extension MyViewController: UITableViewDataSource {
+  // table view data source methods
+}
+
+// MARK: - UIScrollViewDelegate
+extension MyViewController: UIScrollViewDelegate {
+  // scroll view delegate methods
+}
+```
+**Not Preferred:**
+```
+`class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+  // all methods
+}`
+```
+
+### Classes/Structs properties and methods organization
+
+We should organize our classes/structs body in the following order:
 
 ### Markdown
 
