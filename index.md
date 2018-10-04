@@ -2,6 +2,14 @@
 
 This style guide is based on the [raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide) and is meant to help us maintain consistency across projects and also provide a guideline for code review. We've also added SwiftLint as a static code ananlys tool but we should fallback to this style guide for cases that are not covered by SwiftLint. This is a work in progress so please feel free to contribute.
 
+### Use Type Inferred Context
+
+Use compiler inferred context to write shorter, clear code.
+
+```markdown
+
+```
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
