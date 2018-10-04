@@ -61,7 +61,7 @@ extension MyViewController: UIScrollViewDelegate {
 }
 ```
 **Not Preferred:**
-```
+```markdown
 `class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
   // all methods
 }`
