@@ -6,8 +6,19 @@ This style guide is based on the [raywenderlich.com Swift Style Guide](https://g
 
 Use compiler inferred context to write shorter, clear code.
 
+# Preferred:
 ```markdown
-
+let selector = #selector(viewDidLoad)
+view.backgroundColor = .red
+let toView = context.view(forKey: .to)
+let view = UIView(frame: .zero)
+```
+# Not Preferred:
+```markdown
+let selector = #selector(ViewController.viewDidLoad)
+view.backgroundColor = UIColor.red
+let toView = context.view(forKey: UITransitionContextViewKey.to)
+let view = UIView(frame: CGRect.zero)
 ```
 
 ### Markdown
