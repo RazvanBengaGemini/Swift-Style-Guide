@@ -21,6 +21,21 @@ let toView = context.view(forKey: UITransitionContextViewKey.to)
 let view = UIView(frame: CGRect.zero)
 ```
 
+### Generic type paramateres and associated types
+
+Use one or two uppercase letters such as T, U, or VM.
+
+**Preferred:**
+```
+struct Stack<V> { ... }
+associatedType VM
+```
+**Not Preferred:**
+```
+struct Stack<View> { ... }
+associatedType ViewModel
+```
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
