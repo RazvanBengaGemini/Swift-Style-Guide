@@ -38,6 +38,100 @@ struct Stack<View> { ... }
 associatedType ViewModel
 ```
 
+### Use of Self
+
+For conciseness, avoid using self since Swift does not require it to access an object's properties or invoke its methods.
+
+Use self only when required by the compiler (in @escaping closures, or in initializers to disambiguate properties from arguments). In other words, if it compiles without self then omit it.
+
+### Closure Expressions
+
+Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
+
+**Preferred:**
+```
+UIView.animate(withDuration: 1.0) {
+   self.myView.alpha = 0
+}
+
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+}, completion: { finished in
+   self.myView.removeFromSuperview()
+})
+```
+
+**Not Preferred:**
+```
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+})
+
+UIView.animate(withDuration: 1.0, animations: {
+   self.myView.alpha = 0
+}) { f in
+   self.myView.removeFromSuperview()
+}
+```
+
+### Type Annotation for Empty Arrays and Dictionaries
+
+For empty arrays and dictionaries, use type annotation. (For an array or dictionary assigned to a large, multi-line literal, use type annotation.)
+
+**Preferred:**
+```
+var names: [String] = []
+var lookup: [String: Int] = [:]
+```
+
+**Not Preferred:**
+```
+var names = [String]()
+var lookup = [String: Int]()
+```
+
+### Syntactic Sugar
+
+Prefer the shortcut versions of type declarations over the full generics syntax.
+
+**Preferred:**
+```
+var deviceModels: [String]
+var employees: [Int: String]
+var faxNumber: Int?
+```
+
+**Not Preferred:**
+```
+var deviceModels: Array<String>
+var employees: Dictionary<Int, String>
+var faxNumber: Optional<Int>
+```
+
+### Unused Code
+
+Unused (dead) code, including Xcode template code and placeholder comments should be removed.
+
+**Preferred:**
+```
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return Database.contacts.count
+}
+```
+
+**Not Preferred:**
+```
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return Database.contacts.count
+}
+```
+
 ## Code organization
 
 Use extensions to organize your code into logical blocks of functionality. Each extension should be set off with a // MARK: - comment to keep things well-organized.
@@ -143,94 +237,69 @@ class MyViewController: UIViewController {
 }
 ```
 
-### Use of Self
+## Spacing
 
-For conciseness, avoid using self since Swift does not require it to access an object's properties or invoke its methods.
-
-Use self only when required by the compiler (in @escaping closures, or in initializers to disambiguate properties from arguments). In other words, if it compiles without self then omit it.
-
-### Closure Expressions
-
-Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
+- Indent using tabs rather than spaces.
+- Method braces and other braces (if/else/switch/while etc.) always open on the same line as the statement but close on a new line.
 
 **Preferred:**
 ```
-UIView.animate(withDuration: 1.0) {
-   self.myView.alpha = 0
-}
-
-UIView.animate(withDuration: 1.0, animations: {
-   self.myView.alpha = 0
-}, completion: { finished in
-   self.myView.removeFromSuperview()
-})
-```
-
-**Not Preferred:**
-```
-UIView.animate(withDuration: 1.0, animations: {
-   self.myView.alpha = 0
-})
-
-UIView.animate(withDuration: 1.0, animations: {
-   self.myView.alpha = 0
-}) { f in
-   self.myView.removeFromSuperview()
-}
-```
-
-### Unused Code
-
-Unused (dead) code, including Xcode template code and placeholder comments should be removed.
-
-**Preferred:**
-```
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return Database.contacts.count
+if user.isHappy {
+    // Do something
+} else {
+    // Do something else
 }
 ```
 
 **Not Preferred:**
 ```
-override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+if user.isHappy
+{
+  // Do something
 }
-
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
-    return Database.contacts.count
+else {
+  // Do something else
 }
 ```
 
-### Markdown
+- Classes, structs, enums should have a top and a bottom whitespace.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+**Preferred:**
+```
+class SomeClass {
+    
+    var property: String?
+    
+    func someFunc() {
+    }
+    
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**Not Preferred:**
+```
+class SomeClass {
+    var property: String?
+    
+    func someFunc() {
+    }
+}
+```
 
-### Jekyll Themes
+- There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods (No top/bottom whitespace needed).
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RazvanBengaGemini/Swift-Style-Guide/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- Colons always have no space on the left and one space on the right. Exceptions are the ternary operator ? :, empty dictionary [:] and #selector syntax for unnamed parameters (_:).
 
-### Support or Contact
+**Preferred:**
+```
+class TestDatabase: Database {
+    var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
+}
+```
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**Not Preferred:**
+```
+class TestDatabase : Database {
+    var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
+}
+```
