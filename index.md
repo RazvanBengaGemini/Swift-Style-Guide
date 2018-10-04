@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## WHP Swift style guide
 
-You can use the [editor on GitHub](https://github.com/RazvanBengaGemini/Swift-Style-Guide/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This style guide is based on the [raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide) and is meant to help us maintain consistency across projects and also provide a guideline for code review. We've also added SwiftLint as a static code ananlys tool but we should fallback to this style guide for cases that are not covered by SwiftLint. This is a work in progress so please feel free to contribute.
 
 ### Markdown
 
